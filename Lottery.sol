@@ -13,4 +13,8 @@ contract Lottery {
         require(msg.value > .01 ether, "Insufficient funds");
         players.push(msg.sender);
     }
+
+    function random() public view returns (uint) {
+        return uint(keccak256(abi.encodePacked(block.prevrandao, block.timestamp, players)));
+    }
 }
