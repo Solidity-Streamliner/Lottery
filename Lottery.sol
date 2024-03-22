@@ -17,4 +17,11 @@ contract Lottery {
     function random() public view returns (uint) {
         return uint(keccak256(abi.encodePacked(block.prevrandao, block.timestamp, players)));
     }
+
+    function pickWinner() public {
+        require(players.length > 0, "No players in the lottery");
+        uint index = random() % players.length;
+        payable(players[index]).transfer(address(this).balance);
+        players = new address[](0); // Reset the players array
+    }
 }
