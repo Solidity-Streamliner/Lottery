@@ -19,6 +19,7 @@ contract Lottery {
     }
 
     function pickWinner() public {
+        require(msg.sender == manager, "Only the manager can pick a winner");
         require(players.length > 0, "No players in the lottery");
         uint index = random() % players.length;
         payable(players[index]).transfer(address(this).balance);
