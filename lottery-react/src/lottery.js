@@ -1,6 +1,6 @@
-const web3 = require('./web3');
+import getWeb3 from './web3';
 
-const address = '0xe33fd1f9C4fc1636636c365ad1e8874d01a2e6Bc';
+const address = '0x1ce460C25e4e51C93F83d4651a4CA44b5c333391';
 
 const abi = [
     { inputs: [], stateMutability: 'nonpayable', type: 'constructor' },
@@ -48,6 +48,9 @@ const abi = [
     }
   ];
 
-const contractLocalCopy = new web3.eth.Contract(abi, address);
+const getContract = async () => {
+    const web3 = await getWeb3();
+    return new web3.eth.Contract(abi, address);
+};
 
-export default contractLocalCopy;
+export default getContract;
