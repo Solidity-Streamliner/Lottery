@@ -50,4 +50,4 @@ const abi = [
 
 const contractLocalCopy = new web3.eth.Contract(abi, address);
 
-export default contract;
+export default contractLocalCopy;
